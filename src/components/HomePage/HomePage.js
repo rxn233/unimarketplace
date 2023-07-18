@@ -17,8 +17,9 @@ function HomePage(props) {
         <ProductSection className="product-section" products={props.products} />
       </div>
       <AboutUs />
-      <Login />
+
       <Footer />
+      <Login />
     </Fragment>
   );
 }
