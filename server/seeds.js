@@ -4421,22 +4421,22 @@ const seedUsers = [
     user_id: "rxn233",
     user_name: "Rohit Nair",
     user_contact: "0XXXXXXXXXX",
-    user_email: 'rxn233@student.bham.ac.uk',
-    user_password: 'rxn233@bham'
+    user_email: "rxn233@student.bham.ac.uk",
+    user_password: "rxn233@bham",
   },
   {
     user_id: "rxn234",
     user_name: "Shashank",
     user_contact: "0YYYYYYYYYY",
-    user_email: 'rxn234@student.bham.ac.uk',
-    user_password: 'rxn234@bham',
+    user_email: "rxn234@student.bham.ac.uk",
+    user_password: "rxn234@bham",
   },
   {
     user_id: "rxn235",
     user_name: "Yuta",
     user_contact: "0ZZZZZZZZZZ",
-    user_email: 'rxn235@student.bham.ac.uk',
-    user_password: 'rxn235@bham'
+    user_email: "rxn235@student.bham.ac.uk",
+    user_password: "rxn235@bham",
   },
 ];
 

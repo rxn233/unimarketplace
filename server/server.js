@@ -8,11 +8,13 @@ const cors = require("cors");
 const Product = require("./models/product");
 const User = require("./models/users");
 const loginRoute = require("./routes/login");
+const displayRoute = require("./routes/productDisplay");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(express.json());
 app.use(cors());
 
 const dummyProducts = [{ id: 1, name: "Hello", price: 10 }];
@@ -27,15 +29,9 @@ mongoose
     console.log(err);
   });
 
-app.get("/home", async (req, res) => {
-  const allProducts = await Product.find({});
-  res.json(allProducts);
-});
+app.get("/home", displayRoute.productsDisplay);
 
-app.post("/login", async (req, res) => {
-  console.log(req.body);
-  res.json({dummyProducts});
-});
+app.post("/login", loginRoute.loginUser);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

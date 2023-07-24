@@ -1,7 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import "./NavBar.css";
 
 function NavBar(props) {
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn"));
+
+  useEffect(() => {
+  }, [loggedIn])
   return (
     <div>
       <nav className="navbar">
@@ -22,9 +26,14 @@ function NavBar(props) {
             <li>
               <a href="/messages">Messages</a>
             </li>
-            <li>
-              <a href="/login">Log In</a>
-            </li>
+            {loggedIn === 'false' ? (<li>
+              <a href='/login'>Log In</a>
+            </li>) : (<li>
+              <a href='/myprofile'>My Profile</a>
+            </li>)}
+            
+            
+            
           </ul>
         </div>
       </nav>
