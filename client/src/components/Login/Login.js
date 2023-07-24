@@ -8,29 +8,28 @@ function Login() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   function emailChangeHandler(event) {
-    console.log("Name");
     setEnteredEmail(event.target.value);
   }
 
   function passwordChangeHandler(event) {
-    console.log("Password changed");
     setEnteredPassword(event.target.value);
   }
 
   function submitHandler(event) {
     event.preventDefault();
+    const formData = {enteredEmail, enteredPassword};
     console.log("Submitted");
     console.log(enteredEmail, enteredPassword);
     fetch(`http://localhost:3001/login`, {
       method: "POST",
-      body: JSON.stringify({ enteredEmail, enteredPassword }),
+      body: JSON.stringify(formData),
     })
       .then((response) => {
         response.json();
-        console.log(response.json());
       })
       .then((data) => {
         setLoggedIn(true);
+        console.log(data);
         console.log("Logged in");
       })
       .catch((err) => {
@@ -74,6 +73,7 @@ function Login() {
           Login
         </button>
       </form>
+      <h2>Create an account</h2><a href="/signup">SignUp</a>
     </div>
   );
 }
