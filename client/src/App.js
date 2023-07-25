@@ -27,8 +27,6 @@ function App() {
     localStorage.setItem("loggedIn", false);
     setLoggedIn(false);
     console.log(logoutData);
-    // setLogoutInfo(logoutData);
-    // console.log(logOutInfo);
   }
 
   return (
