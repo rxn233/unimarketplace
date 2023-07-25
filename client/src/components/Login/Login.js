@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState("false");
   const navigate = useNavigate();
 
   function emailChangeHandler(event) {
@@ -18,7 +17,7 @@ function Login(props) {
 
   function submitHandler(event) {
     event.preventDefault();
-    const formData = { enteredEmail, enteredPassword, loggedIn };
+    const formData = { enteredEmail, enteredPassword };
     console.log("Submitted");
     console.log(formData);
 
@@ -33,18 +32,18 @@ function Login(props) {
       .then((data) => {
         console.log(data);
         if (data === "y") {
-          setLoggedIn("true");
           props.onLogin(formData);
           navigate("/");
         } else {
           console.log(data);
         }
-        // localStorage.setItem("loggedIn", true);
       })
       .catch((err) => {
         console.log("Error");
       });
   }
+
+  // useEffect(() => {}, [loggedIn]);
 
   return (
     <div className="main-login">
