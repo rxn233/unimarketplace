@@ -1,6 +1,6 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import "./MyProfile.css";
 
 function MyProfile(props) {

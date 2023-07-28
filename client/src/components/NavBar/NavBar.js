@@ -1,4 +1,3 @@
-import { Fragment, useState, useEffect } from "react";
 import "./NavBar.css";
 
 function NavBar(props) {

@@ -1,8 +1,6 @@
 import { Fragment } from "react";
-import "./HomePage.css";
 import ProductSection from "../ProductSection/ProductSection";
-import AboutUs from "../AboutUs/AboutUs";
-import Footer from "../Footer/Footer";
+import "./HomePage.css";
 
 function HomePage() {
   return (
