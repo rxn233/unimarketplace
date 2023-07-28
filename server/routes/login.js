@@ -13,13 +13,13 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ user_email: enteredEmail });
     console.log(user);
     if (!user) {
-      res.send("User not found");
+      res.json({ flag: "n", error: "User not found" });
     } else {
       if (user.user_password !== enteredPassword) {
-        res.send("Incorrect password");
-      } else{
-        res.send('y');
-      } 
+        res.json({ flag: "n", error: "Incorrect password" });
+      } else {
+        res.json({ flag: "y", user_id: user.user_id });
+      }
     }
   } catch (err) {
     res.send("Error going into catch");

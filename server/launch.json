@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Launch Express Server",
+        "runtimeExecutable": "nodemon", // Use "node" instead if you don't have nodemon installed
+        "runtimeArgs": ["${workspaceFolder}/server.js"], // Replace with the entry point of your Express app
+        "restart": true,
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "port": 3001 // Replace with the port your Express app is running on
+      }
+    ]
+  }
+  

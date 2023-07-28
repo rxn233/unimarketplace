@@ -1,18 +1,22 @@
-import React, { Fragment, useState, useEffect } from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
 
 function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   function emailChangeHandler(event) {
     setEnteredEmail(event.target.value);
+    setErrorMessage("");
   }
 
   function passwordChangeHandler(event) {
     setEnteredPassword(event.target.value);
+    setErrorMessage("");
   }
 
   function submitHandler(event) {
@@ -21,35 +25,31 @@ function Login(props) {
     console.log("Submitted");
     console.log(formData);
 
-    fetch(`http://localhost:3001/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        console.log(data);
-        if (data === "y") {
+    axios
+      .post(`http://localhost:3001/login`, formData, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.flag === "y") {
           props.onLogin(formData);
+          localStorage.setItem("user_id", response.data.user_id);
           navigate("/");
         } else {
-          console.log(data);
+          setErrorMessage(response.data.error);
         }
       })
-      .catch((err) => {
+      .catch(function (error) {
         console.log("Error");
       });
   }
-
-  // useEffect(() => {}, [loggedIn]);
 
   return (
     <div className="main-login">
       <form onSubmit={submitHandler} className="login-form">
         <h1>Login</h1>
-        <div className="form-input-material">
+        <h3>{errorMessage}</h3>
+        <div>
           <label htmlFor="email">Email</label>
           <input
             onChange={emailChangeHandler}
@@ -58,11 +58,10 @@ function Login(props) {
             id="email"
             placeholder=" "
             // autoComplete="off"
-            className="form-control-material"
             required
           />
         </div>
-        <div className="form-input-material">
+        <div>
           <label htmlFor="password">Password</label>
           <input
             onChange={passwordChangeHandler}
@@ -71,13 +70,10 @@ function Login(props) {
             id="password"
             placeholder=" "
             autoComplete="off"
-            className="form-control-material"
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary btn-ghost">
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
       <h2>Create an account</h2>
       <a href="/signup">SignUp</a>

@@ -1,36 +1,63 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function SignUp() {
+function SignUp(props) {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredName, setEnteredName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
-  function nameHandler(event){
+  function nameHandler(event) {
     setEnteredName(event.target.value);
-
+    setErrorMessage("");
   }
 
-  function emailHandler(event){
+  function emailHandler(event) {
     setEnteredEmail(event.target.value);
-}
-  
+    setErrorMessage("");
+  }
 
-  function passwordHandler(event){
-setEnteredPassword(event.target.value);
-}
-  
+  function passwordHandler(event) {
+    setEnteredPassword(event.target.value);
+    setErrorMessage("");
+  }
+
   function submitHandler(event) {
     event.preventDefault();
     console.log(enteredName, enteredEmail, enteredPassword);
+    const formData = { enteredName, enteredEmail, enteredPassword };
+    const dataForLogin = { enteredEmail, enteredPassword };
+
+    axios
+      .post(`http://localhost:3001/signup`, formData, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data.flag === "y") {
+          localStorage.setItem("loggedIn", true);
+          props.onLogin(dataForLogin);
+          localStorage.setItem("user_id", response.data.user_id);
+          navigate("/");
+        } else {
+          setErrorMessage(response.data.error);
+        }
+      })
+      .catch(function (error) {
+        console.log("Error in signup");
+      });
   }
 
   return (
     <div>
       <h2>SignUp</h2>
+      <h4>{errorMessage}</h4>
       <form onSubmit={submitHandler} className="login-form">
         <div>
           <label htmlFor="name">Your Name: </label>
-          <input onChange = {nameHandler} type="text" id="name" name="username" />
+          <input onChange={nameHandler} type="text" id="name" name="username" />
         </div>
         <div>
           <label htmlFor="email">Your Email: </label>
@@ -38,7 +65,12 @@ setEnteredPassword(event.target.value);
         </div>
         <div>
           <label htmlFor="password">Enter Password: </label>
-          <input onChange={passwordHandler} type="password" id="password" name="password" />
+          <input
+            onChange={passwordHandler}
+            type="password"
+            id="password"
+            name="password"
+          />
         </div>
         <button type="submit">Submit</button>
       </form>

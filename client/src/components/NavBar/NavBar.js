@@ -4,9 +4,9 @@ import "./NavBar.css";
 function NavBar(props) {
   const loggedIn = localStorage.getItem("loggedIn");
 
-  useEffect(() => {
-    console.log("Navbar", props);
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   console.log("Navbar", props);
+  // }, [loggedIn]);
 
   return (
     <div>
