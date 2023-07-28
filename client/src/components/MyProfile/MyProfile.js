@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import './MyProfile.css';
+import axios from "axios";
+import "./MyProfile.css";
 
 function MyProfile(props) {
   console.log("MyProfile");
@@ -35,16 +35,15 @@ function MyProfile(props) {
 
   return (
     <div>
-      
+      <h2>My profile</h2>
       {/* <h2>Name: {userData.user_name}</h2>
       <h2>Email: {userData.user_email}</h2>
       <h2>Address: {userData.user_address}</h2> */}
       <div className="profile">
-      <h1>My profile</h1>
-    <h2 className="name">{userData.user_name}</h2>
-    <p className="email">{userData.user_email}</p>
-    <p className="address">{userData.user_address}</p>
-  </div>
+        <h1 className="name">{userData.user_name}</h1>
+        <p className="email">{userData.user_email}</p>
+        <p className="address">{userData.user_address}</p>
+      </div>
       <button onClick={logOutHandler}>Log Out</button>
     </div>
   );

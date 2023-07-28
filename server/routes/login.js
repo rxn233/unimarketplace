@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const User = require("../models/users");
+const bcrypt = require("bcrypt");
 
 const loginUser = async (req, res) => {
   console.log("Logging server");
@@ -15,7 +16,13 @@ const loginUser = async (req, res) => {
     if (!user) {
       res.json({ flag: "n", error: "User not found" });
     } else {
-      if (user.user_password !== enteredPassword) {
+      const matchPassword = await bcrypt.compare(
+        enteredPassword,
+        user.user_password
+      );
+      console.log(matchPassword);
+      //if (user.user_password !== enteredPassword) {
+      if (!matchPassword) {
         res.json({ flag: "n", error: "Incorrect password" });
       } else {
         res.json({ flag: "y", user_id: user.user_id });

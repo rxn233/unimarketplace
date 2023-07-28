@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const User = require("../models/users");
+const bcrypt = require("bcrypt");
 
 const userSignup = async (req, res) => {
   console.log("Signup");
@@ -12,12 +13,15 @@ const userSignup = async (req, res) => {
     if (!user) {
       if (enteredEmail.includes("bham.ac.uk")) {
         const userID = enteredEmail.split("@");
+        const hashedPassword = await bcrypt.hash(enteredPassword, 10);
+        console.log("Hashed");
+        console.log(hashedPassword);
         try {
           await User.insertMany({
             user_id: userID[0],
             user_name: enteredName,
             user_email: enteredEmail,
-            user_password: enteredPassword,
+            user_password: hashedPassword,
           })
             .then((data) => {
               console.log("Success", data);
