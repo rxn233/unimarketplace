@@ -8,8 +8,6 @@ function HomePage() {
   return (
     <Fragment>
       <ProductSection />
-      <AboutUs />
-      <Footer />
     </Fragment>
   );
 }
