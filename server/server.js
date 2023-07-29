@@ -19,15 +19,13 @@ app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(cors());
 
-const dummyProducts = [{ id: 1, name: "Hello", price: 10 }];
-
 mongoose
   .connect("mongodb://localhost:27017/uniMarketPlace")
   .then(() => {
     console.log("MONGO CONNECTION OPEN!!!");
   })
   .catch((err) => {
-    console.log("OH NO MONGO CONNECTION ERROR!!!!");
+    console.log("MONGO CONNECTION ERROR!!!!");
     console.log(err);
   });
 
@@ -36,8 +34,6 @@ app.get("/home", displayRoute.productsDisplay);
 app.get("/myprofile", myProfileRoute.profileDisplay);
 
 app.post("/login", loginRoute.loginUser);
-
-// app.get("/login", loginRoute.loginUser1);
 
 app.post("/signup", signupRoute.userSignup);
 

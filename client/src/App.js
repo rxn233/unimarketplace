@@ -7,6 +7,8 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import NavBar from "./components/NavBar/NavBar";
 import Sell from "./components/Sell/Sell";
 import SignUp from "./components/SignUp/SignUp";
+import io from "socket.io-client";
+// import LoginContext from "./contexts/LoginContext";
 
 function App() {
   const [userInfo, setUserInfo] = useState([]);

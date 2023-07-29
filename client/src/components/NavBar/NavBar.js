@@ -4,7 +4,7 @@ function NavBar(props) {
   const loggedIn = localStorage.getItem("loggedIn");
 
   // useEffect(() => {
-  //   console.log("Navbar", props);
+  //   const loggedIn = localStorage.getItem("loggedIn");
   // }, [loggedIn]);
 
   return (
