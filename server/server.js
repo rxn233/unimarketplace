@@ -11,6 +11,7 @@ const loginRoute = require("./routes/login");
 const displayRoute = require("./routes/productDisplay");
 const myProfileRoute = require("./routes/myprofile");
 const signupRoute = require("./routes/signup");
+const productListing = require("./routes/productListing");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -33,9 +34,11 @@ app.get("/home", displayRoute.productsDisplay);
 
 app.get("/myprofile", myProfileRoute.profileDisplay);
 
-app.post("/login", loginRoute.loginUser);
+app.get("/login", loginRoute.loginUser);
 
 app.post("/signup", signupRoute.userSignup);
+
+app.post("/sell", productListing.productListing);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

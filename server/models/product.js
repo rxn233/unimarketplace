@@ -32,6 +32,9 @@ const productSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
+  product_location: {
+    type: String,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
 
 function SearchBar(props) {
@@ -11,7 +11,6 @@ function SearchBar(props) {
   function submitHandler(event) {
     event.preventDefault();
     props.onSearch(searchText);
-    
   }
 
   return (

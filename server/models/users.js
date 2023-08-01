@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
   user_contact: { type: String },
   user_email: { type: String, required: true },
   user_password: { type: String, required: true },
+  user_location: { type: String },
 });
 
 const User = mongoose.model("User", userSchema);

@@ -10,14 +10,14 @@ const port = 3001;
 function ProductSection() {
   const [products, setProducts] = useState([]);
   const [searchData, setSearchData] = useState([]);
-  console.log(searchData);
+  // console.log(searchData);
 
   useEffect(() => {
     // Fetch the list of products from the Express backend when the component mounts
     axios
       .get(`http://localhost:${port}/home`, { params: { text: searchData } })
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setProducts(response.data);
       })
       .catch(function (error) {

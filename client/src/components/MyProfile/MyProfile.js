@@ -36,13 +36,10 @@ function MyProfile(props) {
   return (
     <div>
       <h2>My profile</h2>
-      {/* <h2>Name: {userData.user_name}</h2>
-      <h2>Email: {userData.user_email}</h2>
-      <h2>Address: {userData.user_address}</h2> */}
       <div className="profile">
-        <h1 className="name">{userData.user_name}</h1>
-        <p className="email">{userData.user_email}</p>
-        <p className="address">{userData.user_address}</p>
+        <h1 className="name">Username: {userData.user_name}</h1>
+        <p className="email">Email: {userData.user_email}</p>
+        <p className="address">Address: {userData.user_address}</p>
       </div>
       <button onClick={logOutHandler}>Log Out</button>
     </div>

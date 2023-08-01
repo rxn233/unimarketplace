@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { userInfoContext } from "../../contexts/userInfoContext";
 
 function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -21,19 +22,23 @@ function Login(props) {
 
   function submitHandler(event) {
     event.preventDefault();
-    const formData = { enteredEmail, enteredPassword };
+    // const formData = { enteredEmail, enteredPassword };
     console.log("Submitted");
-    console.log(formData);
+    // console.log(formData);
 
     axios
-      .post(`http://localhost:3001/login`, formData, {
-        headers: { "Content-Type": "application/json" },
+      .get(`http://localhost:3001/login`, {
+        params: {
+          enteredEmail: enteredEmail,
+          enteredPassword: enteredPassword,
+        },
       })
       .then(function (response) {
         console.log(response.data);
         if (response.data.flag === "y") {
-          props.onLogin(formData);
-          localStorage.setItem("user_id", response.data.user_id);
+          props.onLogin(response.data.userData);
+          console.log(response.data.userData.user_id);
+          localStorage.setItem("user_id", response.data.userData.user_id);
           navigate("/");
         } else {
           setErrorMessage(response.data.error);

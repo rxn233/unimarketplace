@@ -8,10 +8,11 @@ import NavBar from "./components/NavBar/NavBar";
 import Sell from "./components/Sell/Sell";
 import SignUp from "./components/SignUp/SignUp";
 import io from "socket.io-client";
-// import LoginContext from "./contexts/LoginContext";
+
+// const socket = io.connect("http://localhost:3001");
 
 function App() {
-  const [userInfo, setUserInfo] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
   const [loggedIn, setLoggedIn] = useState();
 
   if (localStorage.getItem("loggedIn") === null) {
@@ -32,9 +33,11 @@ function App() {
     console.log(logoutData);
   }
 
+  console.log("Userinfo", userInfo);
+
   return (
     <div>
-      <NavBar userInfo={userInfo} loggedIn={loggedIn} />
+      <NavBar loggedIn={loggedIn} />
       <Router>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
@@ -53,7 +56,7 @@ function App() {
           <Route
             exact
             path="/myprofile"
-            element={<MyProfile onLogout={logOutHandler} userInfo={userInfo} />}
+            element={<MyProfile onLogout={logOutHandler} />}
           />
         </Routes>
       </Router>
