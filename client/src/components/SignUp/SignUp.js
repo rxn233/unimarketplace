@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignUp(props) {
@@ -26,28 +26,48 @@ function SignUp(props) {
 
   function submitHandler(event) {
     event.preventDefault();
-    console.log(enteredName, enteredEmail, enteredPassword);
     const formData = { enteredName, enteredEmail, enteredPassword };
-    const dataForLogin = { enteredEmail, enteredPassword };
+    // const dataForLogin = { enteredEmail, enteredPassword };
 
     axios
-      .post(`http://localhost:3001/signup`, formData, {
-        headers: { "Content-Type": "application/json" },
+      .get("http://localhost:3001/signup", {
+        params: { enteredEmail: enteredEmail },
       })
       .then(function (response) {
-        console.log(response.data);
         if (response.data.flag === "y") {
-          localStorage.setItem("loggedIn", true);
-          props.onLogin(dataForLogin);
-          localStorage.setItem("user_id", response.data.user_id);
-          navigate("/");
+          props.onSignup(formData);
+          console.log("signup check completed");
+          navigate("/verify");
         } else {
           setErrorMessage(response.data.error);
         }
       })
       .catch(function (error) {
-        console.log("Error in signup");
+        console.log("Error in signup data fetch", error);
       });
+
+    props.onSignup(formData);
+    navigate("/verify");
+
+    //   axios
+    //     .post(`http://localhost:3001/signup`, formData, {
+    //       headers: { "Content-Type": "application/json" },
+    //     })
+    //     .then(function (response) {
+    //       console.log(response.data);
+    //       if (response.data.flag === "y") {
+    //         localStorage.setItem("loggedIn", true);
+    //         // props.onLogin(dataForLogin);
+    //         localStorage.setItem("user_id", response.data.user_id);
+    //         navigate("/verify");
+    //       } else {
+    //         setErrorMessage(response.data.error);
+    //       }
+    //     })
+    //     .catch(function (error) {
+    //       console.log("Error in signup");
+    //     });
+    // }
   }
 
   return (

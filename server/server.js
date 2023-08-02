@@ -36,7 +36,11 @@ app.get("/myprofile", myProfileRoute.profileDisplay);
 
 app.get("/login", loginRoute.loginUser);
 
-app.post("/signup", signupRoute.userSignup);
+app.get("/signup", signupRoute.signupCheck);
+
+app.post("/verify", signupRoute.verifyCode);
+
+// app.post("/signup", signupRoute.userSignup);
 
 app.post("/sell", productListing.productListing);
 

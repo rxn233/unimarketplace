@@ -8,12 +8,14 @@ import NavBar from "./components/NavBar/NavBar";
 import Sell from "./components/Sell/Sell";
 import SignUp from "./components/SignUp/SignUp";
 import io from "socket.io-client";
+import Verify from "./components/SignUp/Verify";
 
 // const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loggedIn, setLoggedIn] = useState();
+  const [signupData, setSignupData] = useState({});
 
   if (localStorage.getItem("loggedIn") === null) {
     localStorage.setItem("loggedIn", false);
@@ -26,6 +28,11 @@ function App() {
     setLoggedIn(true);
   }
 
+  function signupDataHandler(signupData) {
+    console.log("App signupdata", signupData);
+    setSignupData(signupData);
+  }
+
   function logOutHandler(logoutData) {
     localStorage.setItem("loggedIn", false);
     localStorage.setItem("user_id", "");
@@ -33,7 +40,7 @@ function App() {
     console.log(logoutData);
   }
 
-  console.log("Userinfo", userInfo);
+  // console.log("Userinfo", userInfo);
 
   return (
     <div>
@@ -51,12 +58,19 @@ function App() {
           <Route
             exact
             path="/signup"
-            element={<SignUp onLogin={loginDataHandler} />}
+            element={<SignUp onSignup={signupDataHandler} />}
           />
           <Route
             exact
             path="/myprofile"
             element={<MyProfile onLogout={logOutHandler} />}
+          />
+          <Route
+            exact
+            path="/verify"
+            element={
+              <Verify signupData={signupData} onLogin={loginDataHandler} />
+            }
           />
         </Routes>
       </Router>
