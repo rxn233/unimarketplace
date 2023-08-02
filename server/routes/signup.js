@@ -25,7 +25,7 @@ const signupCheck = async (req, res) => {
   console.log(enteredEmail);
   const user = await User.findOne({ user_email: enteredEmail });
   if (!user) {
-    if (true) {
+    if (enteredEmail.includes("bham.ac.uk")) {
       generateVerificationCode(enteredEmail);
       res.json({ flag: "y" });
     } else {
@@ -115,53 +115,7 @@ const verifyCode = async (req, res) => {
   }
 };
 
-// const userSignup = async (req, res) => {
-//   console.log("Signup");
-//   const { enteredName, enteredEmail, enteredPassword } = req.body;
-//   console.log(enteredName, enteredEmail, enteredPassword);
-
-//   try {
-//     const user = await User.findOne({ user_email: enteredEmail });
-//     if (!user) {
-//       if (enteredEmail.includes("bham.ac.uk")) {
-//         const userID = enteredEmail.split("@");
-//         const hashedPassword = await bcrypt.hash(enteredPassword, 10);
-//         console.log("Hashed");
-//         console.log(hashedPassword);
-//         try {
-//           await User.insertMany({
-//             user_id: userID[0],
-//             user_name: enteredName,
-//             user_email: enteredEmail,
-//             user_password: hashedPassword,
-//           })
-//             .then((data) => {
-//               console.log("Success", data);
-//             })
-//             .catch((err) => {
-//               console.log("Error", err);
-//             });
-//         } catch (err) {
-//           res.json({ flag: "n", error: "Error signing up" });
-//         }
-//         res.json({
-//           flag: "y",
-//           user_id: userID[0],
-//           email: enteredEmail,
-//         });
-//       } else {
-//         res.json({ flag: "n", error: "Email is not a student email" });
-//       }
-//     } else {
-//       res.json({ flag: "n", error: "Email already exists, please login" });
-//     }
-//   } catch (err) {
-//     console.log("Error", err);
-//   }
-// };
-
 module.exports = {
-  // userSignup,
   signupCheck,
   verifyCode,
 };
