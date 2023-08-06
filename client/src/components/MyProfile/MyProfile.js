@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 import "./MyProfile.css";
 
 function MyProfile(props) {
-  console.log("MyProfile");
+  // console.log("MyProfile");
   const port = 3001;
   const navigate = useNavigate();
 
   const [userId, setUserId] = useState(localStorage.getItem("user_id"));
   const [userData, setUserData] = useState({});
-  console.log("Myprofile", userId);
+  // console.log("Myprofile", userId);
 
   useEffect(() => {
     userId === null

@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import { userInfoContext } from "../../contexts/userInfoContext";
 
 function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -22,9 +21,7 @@ function Login(props) {
 
   function submitHandler(event) {
     event.preventDefault();
-    // const formData = { enteredEmail, enteredPassword };
     console.log("Submitted");
-    // console.log(formData);
 
     axios
       .get(`http://localhost:3001/login`, {

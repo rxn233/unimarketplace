@@ -27,7 +27,6 @@ function SignUp(props) {
   function submitHandler(event) {
     event.preventDefault();
     const formData = { enteredName, enteredEmail, enteredPassword };
-    // const dataForLogin = { enteredEmail, enteredPassword };
 
     axios
       .get("http://localhost:3001/signup", {
@@ -45,29 +44,6 @@ function SignUp(props) {
       .catch(function (error) {
         console.log("Error in signup data fetch", error);
       });
-
-    props.onSignup(formData);
-    navigate("/verify");
-
-    //   axios
-    //     .post(`http://localhost:3001/signup`, formData, {
-    //       headers: { "Content-Type": "application/json" },
-    //     })
-    //     .then(function (response) {
-    //       console.log(response.data);
-    //       if (response.data.flag === "y") {
-    //         localStorage.setItem("loggedIn", true);
-    //         // props.onLogin(dataForLogin);
-    //         localStorage.setItem("user_id", response.data.user_id);
-    //         navigate("/verify");
-    //       } else {
-    //         setErrorMessage(response.data.error);
-    //       }
-    //     })
-    //     .catch(function (error) {
-    //       console.log("Error in signup");
-    //     });
-    // }
   }
 
   return (

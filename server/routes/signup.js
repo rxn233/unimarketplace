@@ -27,12 +27,13 @@ const signupCheck = async (req, res) => {
   if (!user) {
     if (enteredEmail.includes("bham.ac.uk")) {
       generateVerificationCode(enteredEmail);
+      console.log("Comes here");
       res.json({ flag: "y" });
     } else {
+      console.log("Comes error");
       res.json({
         flag: "n",
-        error:
-          "Not a student email id, please student your student email address",
+        error: "Please use university email address",
       });
     }
   } else {

@@ -3,10 +3,6 @@ import "./NavBar.css";
 function NavBar(props) {
   const loggedIn = localStorage.getItem("loggedIn");
 
-  // useEffect(() => {
-  //   const loggedIn = localStorage.getItem("loggedIn");
-  // }, [loggedIn]);
-
   return (
     <div>
       <nav className="navbar">

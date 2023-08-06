@@ -37,8 +37,6 @@ function Verify(props) {
       .catch(function (error) {
         console.log("Verification error", error);
       });
-
-    // navigate("/");
   }
 
   return (

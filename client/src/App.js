@@ -22,14 +22,14 @@ function App() {
   }
 
   function loginDataHandler(loginData) {
-    console.log("App", loginData);
+    // console.log("App", loginData);
     localStorage.setItem("loggedIn", true);
     setUserInfo(loginData);
     setLoggedIn(true);
   }
 
   function signupDataHandler(signupData) {
-    console.log("App signupdata", signupData);
+    // console.log("App signupdata", signupData);
     setSignupData(signupData);
   }
 
@@ -40,11 +40,9 @@ function App() {
     console.log(logoutData);
   }
 
-  // console.log("Userinfo", userInfo);
-
   return (
     <div>
-      <NavBar loggedIn={loggedIn} />
+      <NavBar />
       <Router>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
