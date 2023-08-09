@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Sell from "./components/Sell/Sell";
 import SignUp from "./components/SignUp/SignUp";
 import Verify from "./components/SignUp/Verify";
+import Messaging from "./components/Messaging/Messaging";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -67,6 +68,7 @@ function App() {
               <Verify signupData={signupData} onLogin={loginDataHandler} />
             }
           />
+          <Route exact path="/message" element={<Messaging />} />
         </Routes>
       </Router>
     </div>

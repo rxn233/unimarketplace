@@ -1,6 +1,13 @@
 import "./ProductList.css";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function ProductList(props) {
+  const navigate = useNavigate();
+
+  const messageUser = () => {
+    navigate("/message");
+  };
   return (
     <div className="product-box">
       <div className="product-image">
@@ -19,7 +26,7 @@ function ProductList(props) {
           <span className="price-label">Estimated Price: </span>
           <span className="product-estimated-price">Estimated AI Price</span>
         </div>
-        <button>Message User</button>
+        <button onClick={messageUser}>Message User</button>
       </div>
     </div>
   );

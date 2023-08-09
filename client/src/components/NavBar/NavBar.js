@@ -21,7 +21,7 @@ function NavBar(props) {
               <a href="/about">About Us</a>
             </li>
             <li>
-              <a href="/messages">Messages</a>
+              <a href="/message">Messages</a>
             </li>
             {loggedIn === "false" ? (
               <li>
