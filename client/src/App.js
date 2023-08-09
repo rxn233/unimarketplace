@@ -7,10 +7,7 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import NavBar from "./components/NavBar/NavBar";
 import Sell from "./components/Sell/Sell";
 import SignUp from "./components/SignUp/SignUp";
-import io from "socket.io-client";
 import Verify from "./components/SignUp/Verify";
-
-// const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [userInfo, setUserInfo] = useState({});

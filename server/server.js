@@ -12,6 +12,9 @@ const displayRoute = require("./routes/productDisplay");
 const myProfileRoute = require("./routes/myprofile");
 const signupRoute = require("./routes/signup");
 const productListing = require("./routes/productListing");
+const { socketSetup } = require("./routes/socket");
+const http = require("http");
+const server = http.createServer(app);
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -40,10 +43,10 @@ app.get("/signup", signupRoute.signupCheck);
 
 app.post("/verify", signupRoute.verifyCode);
 
-// app.post("/signup", signupRoute.userSignup);
-
 app.post("/sell", productListing.productListing);
 
-app.listen(port, () => {
+socketSetup(server);
+
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
