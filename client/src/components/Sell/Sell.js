@@ -1,67 +1,53 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import ProductList from "../ProductSection/ProductList";
+import { useNavigate } from "react-router";
 
 function Sell() {
-  function submitHandler(event) {
-    event.preventDefault();
+  const userId = localStorage.getItem("user_id");
+  const [products, setProducts] = useState([]);
+
+  // function submitHandler(event) {
+  //   event.preventDefault();
+  // }
+  const navigate = useNavigate();
+  function clickHandler(event) {
+    navigate("/createlisting");
   }
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/myproducts", {
+        params: {
+          user_id: userId,
+        },
+      })
+      .then(function (response) {
+        console.log(response.data);
+        setProducts(response.data);
+      })
+      .catch(function (error) {
+        console.log("Error", error);
+      });
+  }, [userId]);
+
   return (
-    <form onSubmit={submitHandler}>
-      <h1>Sell</h1>
-      <label htmlFor="product_name">Enter the Product Name</label>
-      <input type="text" name="product_name" id="product_name" required />
-      <br />
-      <label htmlFor="product_category">Enter the Product Category</label>
-      <input type="text" name="product_category" id="product_category" />
-      <br />
-      <label htmlFor="product_brand">Enter the Product Brand</label>
-      <input type="text" name="product_brand" id="product_brand" />
-      <br />
-      <label htmlFor="product_condition">Select the Product Condition</label>
-      <input type="checkbox" name="product_condition" id="product_condition" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-      <br />
-      <label htmlFor=""></label>
-      <input type="" name="" id="" />
-    </form>
+    <div>
+      <h2>My Products</h2>
+      <button onClick={clickHandler}>Add New Listing</button>
+      <div>
+        {products.map((i) => (
+          <ProductList
+            key={i.product_id + 1}
+            product_id={i.product_id}
+            product_name={i.product_name}
+            product_image_url={i.product_image_url}
+            product_price={i.product_price}
+            product_description={i.product_description}
+          />
+        ))}
+      </div>
+    </div>
   );
 }
 

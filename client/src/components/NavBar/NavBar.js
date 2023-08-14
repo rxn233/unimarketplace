@@ -15,7 +15,7 @@ function NavBar(props) {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/sell">List a Product</a>
+              <a href="/sell">Sell</a>
             </li>
             <li>
               <a href="/about">About Us</a>

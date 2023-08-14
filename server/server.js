@@ -12,6 +12,7 @@ const displayRoute = require("./routes/productDisplay");
 const myProfileRoute = require("./routes/myprofile");
 const signupRoute = require("./routes/signup");
 const productListing = require("./routes/productListing");
+const userProducts = require("./routes/userProducts");
 const { socketSetup } = require("./routes/socket");
 const http = require("http");
 const server = http.createServer(app);
@@ -41,9 +42,13 @@ app.get("/login", loginRoute.loginUser);
 
 app.get("/signup", signupRoute.signupCheck);
 
+app.get("/myproducts", userProducts.userProductsDisplay);
+
 app.post("/verify", signupRoute.verifyCode);
 
 app.post("/sell", productListing.productListing);
+
+app.post("/createlisting", userProducts.createUserProduct);
 
 socketSetup(server);
 

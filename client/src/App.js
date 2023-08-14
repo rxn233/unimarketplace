@@ -9,6 +9,7 @@ import Sell from "./components/Sell/Sell";
 import SignUp from "./components/SignUp/SignUp";
 import Verify from "./components/SignUp/Verify";
 import Messaging from "./components/Messaging/Messaging";
+import CreateListing from "./components/Sell/CreateListing";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -51,6 +52,7 @@ function App() {
           />
           <Route exact path="/about" element={<AboutUs />} />
           <Route exact path="/sell" element={<Sell />} />
+          <Route exact path="/createlisting" element={<CreateListing />} />
           <Route
             exact
             path="/signup"
