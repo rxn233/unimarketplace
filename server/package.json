@@ -20,6 +20,7 @@
     "node-mailer": "^0.1.1",
     "nodemailer": "^6.9.4",
     "pandas-js": "^0.2.4",
+    "python": "^0.0.4",
     "python-shell": "^5.0.0",
     "socket.io": "^4.7.1"
   }
