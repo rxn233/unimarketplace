@@ -13,10 +13,8 @@ const executePython = async (script, args) => {
     let output = "";
     let errorOutput = "";
     py.stdout.on("data", (data) => {
-      // console.log("Data here", JSON.parse(data));
       output = data.toString();
       console.log("Output is", output);
-      // output = data.toString
     });
 
     py.stderr.on("data", (data) => {
