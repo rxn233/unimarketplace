@@ -11,7 +11,6 @@ const executePython = async (script, args) => {
   const result = await new Promise((resolve, reject) => {
     console.log("inside result promise");
     let output = "";
-    let errorOutput = "";
     py.stdout.on("data", (data) => {
       output = data.toString();
       console.log("Output is", output);
@@ -32,15 +31,33 @@ const executePython = async (script, args) => {
 };
 
 const estimatedPrice = async (req, res) => {
-  console.log("Inside estimated price");
-  try {
-    const result = await executePython("./predict.py", [35, 2]);
-    console.log(result);
-    console.log("Result got");
-    res.json({ flag: "y", estimated_price: result.trim(), error: "no" });
-  } catch (err) {
-    console.log("Error", err);
-    res.json({ flag: "n", error: err });
+  const { productCondition, productOriginalPrice, productDuration } = req.query;
+
+  if (productOriginalPrice > 0) {
+    let x;
+    if (productCondition === "new") {
+      x = 0.0;
+    } else {
+      x = 1.0;
+    }
+    console.log(x);
+    console.log(x, productDuration, productOriginalPrice);
+    console.log("Inside estimated price");
+    try {
+      const result = await executePython("./routes/predict.py", [
+        x,
+        productDuration,
+        productOriginalPrice,
+      ]);
+      console.log(result);
+      console.log("Result got");
+      res.json({ flag: "y", estimated_price: result.trim(), error: "no" });
+    } catch (err) {
+      console.log("Error", err);
+      res.json({ flag: "n", error: err });
+    }
+  } else {
+    res.json({ flag: "y", estimatedPrice: 0 });
   }
 };
 

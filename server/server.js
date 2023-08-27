@@ -11,9 +11,8 @@ const loginRoute = require("./routes/login");
 const displayRoute = require("./routes/productDisplay");
 const myProfileRoute = require("./routes/myprofile");
 const signupRoute = require("./routes/signup");
-const productListing = require("./routes/productListing");
 const userProducts = require("./routes/userProducts");
-const predict = require("./predict");
+const predict = require("./routes/predict");
 const { socketSetup } = require("./routes/socket");
 const http = require("http");
 const server = http.createServer(app);
@@ -47,11 +46,9 @@ app.get("/myproducts", userProducts.userProductsDisplay);
 
 app.post("/verify", signupRoute.verifyCode);
 
-app.post("/sell", productListing.productListing);
-
 app.post("/createlisting", userProducts.createUserProduct);
 
-app.post("/predict", predict.estimatedPrice);
+app.get("/predict", predict.estimatedPrice);
 
 socketSetup(server);
 

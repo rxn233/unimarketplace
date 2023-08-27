@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
@@ -7,9 +7,12 @@ function CreateListing() {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productBrand, setProductBrand] = useState("");
-  const [productCondition, setProductCondition] = useState("");
-  const [productPrice, setProductPrice] = useState("");
+  const [productCondition, setProductCondition] = useState("new");
+  const [productPrice, setProductPrice] = useState();
   const [productURL, setProductURL] = useState("");
+  const [estimatedPrice, setEstimatedPrice] = useState();
+  const [productDuration, setProductDuration] = useState();
+  const [productOriginalPrice, setProductOriginalPrice] = useState();
 
   const navigate = useNavigate();
 
@@ -28,10 +31,38 @@ function CreateListing() {
   function productPriceHandler(event) {
     setProductPrice(event.target.value);
   }
+  function productOriginalPriceHandler(event) {
+    setProductOriginalPrice(event.target.value);
+  }
+  function productDurationHandler(event) {
+    setProductDuration(event.target.value);
+  }
   function productImageURLHandler(event) {
     setProductURL(event.target.value);
   }
   function productImageHandler(event) {}
+
+  function backHandler() {
+    navigate("/sell");
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/predict", {
+        params: {
+          productCondition: productCondition,
+          productOriginalPrice: productOriginalPrice,
+          productDuration: productDuration,
+        },
+      })
+      .then(function (response) {
+        console.log("Success", response.data);
+        setEstimatedPrice(response.data.estimated_price);
+      })
+      .catch(function (error) {
+        console.log("Error", error);
+      });
+  }, [productCondition, productOriginalPrice, productDuration]);
 
   function submitHandler(event) {
     event.preventDefault();
@@ -41,6 +72,8 @@ function CreateListing() {
       productCategory,
       productBrand,
       productCondition,
+      productDuration,
+      productOriginalPrice,
       productPrice,
       productURL,
     };
@@ -94,14 +127,41 @@ function CreateListing() {
         <br />
         <br />
         <label htmlFor="product_condition">Select the product condition</label>
-        <select name="product_condition">
+        <select
+          name="product_condition"
+          onChange={productConditionHandler}
+          value={productCondition}
+        >
           <option value="new">New</option>
           <option value="used">Used</option>
         </select>
         <br />
         <br />
+        <label htmlFor="product_duration">
+          How Long have you used the product for?
+        </label>
+        <input
+          onChange={productDurationHandler}
+          type="number"
+          id="product_duration"
+        />
+        <br />
+        <br />
+        <label htmlFor="original_product_price">
+          Enter the Original Product Price
+        </label>
+        <input
+          onChange={productOriginalPriceHandler}
+          type="number"
+          id="original_product_price"
+        />
+        <br /> <br />
         <label htmlFor="product_price">Enter the product price</label>
-        <input onChange={productPriceHandler} type="number" />
+        <input
+          onChange={productPriceHandler}
+          type="number"
+          id="product_price"
+        />
         <label htmlFor="product_image">Add the Image</label>
         <input
           onChange={productImageHandler}
@@ -120,8 +180,13 @@ function CreateListing() {
         />
         <br />
         <br />
+        <label htmlFor="estimated_price">Estimated Product Price </label>
+        {estimatedPrice}
+        <br />
+        <br />
         <button type="submit">Submit</button>
       </form>
+      <button onClick={backHandler}>Go Back</button>
     </div>
   );
 }
