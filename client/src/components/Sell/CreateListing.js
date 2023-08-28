@@ -10,7 +10,7 @@ function CreateListing() {
   const [productCondition, setProductCondition] = useState("new");
   const [productPrice, setProductPrice] = useState();
   const [productURL, setProductURL] = useState("");
-  const [estimatedPrice, setEstimatedPrice] = useState();
+  const [estimatedPrice, setEstimatedPrice] = useState(0);
   const [productDuration, setProductDuration] = useState();
   const [productOriginalPrice, setProductOriginalPrice] = useState();
 
@@ -151,6 +151,7 @@ function CreateListing() {
           Enter the Original Product Price
         </label>
         <input
+          value={productOriginalPrice}
           onChange={productOriginalPriceHandler}
           type="number"
           id="original_product_price"
