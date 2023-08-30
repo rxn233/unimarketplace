@@ -16,6 +16,13 @@ function ProductList(props) {
       <div className="product-details">
         <h3 className="product-name">{props.product_name}</h3>
         <p className="product-description">{props.product_description}</p>
+        <p className="product-category">
+          <b>Category:</b> {props.product_category}
+        </p>
+        <p className="product-condition">
+          <b>Product Condition: </b>
+          {props.product_condition}
+        </p>
         <div className="price-container">
           <span className="price-label">Price: </span>
           <span className="product-price">

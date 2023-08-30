@@ -15,10 +15,6 @@ function Sell() {
     navigate("/createlisting");
   }
 
-  function backHandler() {
-    navigate("/sell");
-  }
-
   useEffect(() => {
     axios
       .get("http://localhost:3001/myproducts", {
@@ -51,7 +47,6 @@ function Sell() {
           />
         ))}
       </div>
-      <button onClick={backHandler}>Go Back</button>
     </div>
   );
 }

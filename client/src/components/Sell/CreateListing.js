@@ -47,21 +47,24 @@ function CreateListing() {
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/predict", {
-        params: {
-          productCondition: productCondition,
-          productOriginalPrice: productOriginalPrice,
-          productDuration: productDuration,
-        },
-      })
-      .then(function (response) {
-        console.log("Success", response.data);
-        setEstimatedPrice(response.data.estimated_price);
-      })
-      .catch(function (error) {
-        console.log("Error", error);
-      });
+    const timeOut = setTimeout(() => {
+      axios
+        .get("http://localhost:3001/predict", {
+          params: {
+            productCondition: productCondition,
+            productOriginalPrice: productOriginalPrice,
+            productDuration: productDuration,
+          },
+        })
+        .then(function (response) {
+          console.log("Success", response.data);
+          setEstimatedPrice(response.data.estimated_price);
+        })
+        .catch(function (error) {
+          console.log("Error", error);
+        });
+    }, 500);
+    return () => clearTimeout(timeOut);
   }, [productCondition, productOriginalPrice, productDuration]);
 
   function submitHandler(event) {
@@ -182,7 +185,7 @@ function CreateListing() {
         <br />
         <br />
         <label htmlFor="estimated_price">Estimated Product Price </label>
-        {estimatedPrice}
+        {parseFloat(estimatedPrice).toFixed(2)}
         <br />
         <br />
         <button type="submit">Submit</button>
