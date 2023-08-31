@@ -38,6 +38,8 @@ app.get("/home", displayRoute.productsDisplay);
 
 app.get("/myprofile", myProfileRoute.profileDisplay);
 
+app.post("/myprofile", myProfileRoute.updateProfile);
+
 app.get("/login", loginRoute.loginUser);
 
 app.get("/signup", signupRoute.signupCheck);

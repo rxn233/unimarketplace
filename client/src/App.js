@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Verify from "./components/SignUp/Verify";
 import Messaging from "./components/Messaging/Messaging";
 import CreateListing from "./components/Sell/CreateListing";
+import EditProfile from "./components/MyProfile/EditProfile";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
@@ -71,6 +72,7 @@ function App() {
             }
           />
           <Route exact path="/message" element={<Messaging />} />
+          <Route exact path="/editprofile" element={<EditProfile />} />
         </Routes>
       </Router>
     </div>
