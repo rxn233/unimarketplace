@@ -68,7 +68,6 @@ function SignUp(props) {
             type="email"
             id="email"
             name="email"
-            // placeholder=" "
             required
           />
           <label htmlFor="email">Email</label>
@@ -79,19 +78,14 @@ function SignUp(props) {
             type="password"
             id="password"
             name="password"
-            placeholder=" "
             required
           />
           <label htmlFor="password">Password</label>
         </div>
         <button type="submit">Submit</button>
-        {/* <a href="#" onClick={submitHandler}>
-          Submit
-        </a> */}
         <button>
           <a href="/login">Login instead</a>
         </button>
-        {/* <a href="/login">Change your mind? Login</a> */}
       </form>
     </div>
   );

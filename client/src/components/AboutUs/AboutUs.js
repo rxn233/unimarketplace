@@ -1,10 +1,11 @@
 // import "./AboutUs.css";
+import about_style from "./AboutUs.module.css";
 
 function AboutUs() {
   // const navigate = useNavigate();
 
   return (
-    <div className="main-aboutus">
+    <div className={about_style["main-aboutus"]}>
       <h3>About Us</h3>
       <p>
         Welcome to UniMarketPlace, a unique online platform dedicated to
@@ -15,15 +16,6 @@ function AboutUs() {
         no longer need, while also connecting with fellow students to acquire
         products they desire.
       </p>
-      <h3>Our Mission</h3>
-      <p>
-        At UniMarketPlace, our mission is to create a vibrant and resourceful
-        marketplace exclusively for university students, where they can
-        conveniently share and acquire various products. By promoting a culture
-        of reuse and sustainability, we strive to reduce waste, encourage
-        responsible consumption, and build a stronger sense of community within
-        the campus.
-      </p>
       <h3>What We Offer</h3>
       <ul>
         <li>
@@ -33,6 +25,12 @@ function AboutUs() {
           for user authentication. A confirmation email will be sent to the
           university mail to validate the credentials, ensuring only verified
           students can participate.
+        </li>
+        <li>
+          <b>Price Estimation: </b>We provide Machine learning model driven
+          price estimation feature which will predict the prices of all products
+          on the platform which will ensure that there is transparency
+          throughout.
         </li>
       </ul>
     </div>

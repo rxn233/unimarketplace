@@ -8,7 +8,9 @@ function NavBar(props) {
     // <div>
     <div className={styles["nav"]}>
       <div className={styles["nav-header"]}>
-        <div className={styles["nav-title"]}>UniMarketPlace</div>
+        <div className={styles["nav-title"]}>
+          <b>UniMarketPlace</b>
+        </div>
       </div>
       <div className={styles["nav-links"]}>
         <a href="/">Home</a>

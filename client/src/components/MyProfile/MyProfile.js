@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 // import "./MyProfile.css";
-import styles from "./MyProfile.module.css";
+import profile_style from "./MyProfile.module.css";
 
 function MyProfile(props) {
   // console.log("MyProfile");
@@ -38,20 +38,36 @@ function MyProfile(props) {
   }
 
   return (
-    <div>
-      {/* <h2>My profile</h2> */}
-      <button className={styles["edit-button"]} onClick={editHandler}>
-        Edit the profile
-      </button>
-      <div className={styles["profile"]}>
-        <p className={styles["name"]}>Username: {userData.user_name}</p>
-        <p className={styles["email"]}>Email: {userData.user_email}</p>
-        <p className={styles["address"]}>Address: {userData.user_address}</p>
-        <p className={styles["contact"]}>Contact: {userData.user_contact}</p>
+    <div className={profile_style["profile-box"]}>
+      <h2>Profile</h2>
+      <div className={profile_style["profile-edit-button"]}>
+        <button onClick={editHandler}>Edit the profile</button>
       </div>
-      <button className={styles["logout-button"]} onClick={logOutHandler}>
-        Log Out
-      </button>
+      <div className={profile_style["profile-details"]}>
+        <p>
+          <b>Name: </b>
+          {userData.user_name}
+        </p>
+        <p>
+          <b>Email: </b>
+          {userData.user_email}
+        </p>
+        <p>
+          <b>Address: </b>
+          {userData.user_address}
+        </p>
+        <p>
+          <b>Location: </b>
+          {userData.user_location}
+        </p>
+        <p>
+          <b>Contact: </b>
+          {userData.user_contact}
+        </p>
+      </div>
+      <div className={profile_style["profile-logout"]}>
+        <button onClick={logOutHandler}>Log Out</button>
+      </div>
     </div>
   );
 }

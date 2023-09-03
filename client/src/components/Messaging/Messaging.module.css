@@ -38,6 +38,8 @@
 .chat-window {
   width: 300px;
   height: 420px;
+  text-align: center;
+  /* margin: 100px auto; */
 }
 
 .chat-window p {

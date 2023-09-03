@@ -24,7 +24,9 @@ function FilterSection(props) {
   return (
     <div className={styles["filter-container"]}>
       <h2>Filters</h2>
-      <div>
+      <div className={styles["filter-condition"]}>
+        <label>Condition</label>
+        <br />
         <input
           onChange={newProductHandler}
           type="checkbox"
@@ -40,8 +42,9 @@ function FilterSection(props) {
         />{" "}
         <label htmlFor="used">Used</label>
       </div>
-      <div>
+      <div className={styles["filter-condition"]}>
         <label htmlFor="sort">Sort By:</label>
+        <br />
         <select id="sort" onChange={sortHandler} value={sort}>
           <option value="0">Relevance</option>
           <option value="1">Price(Low to High)</option>
