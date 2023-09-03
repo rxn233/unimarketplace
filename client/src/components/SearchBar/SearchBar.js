@@ -30,7 +30,7 @@ function SearchBar(props) {
             placeholder="What are you looking for today?"
           />
           <button type="submit" className={styles["search-button"]}>
-            Submit
+            Search
           </button>
         </form>
       </div>

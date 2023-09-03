@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import "./Login.css";
+import styles from "./Login.module.css";
 
 function Login(props) {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -44,41 +45,40 @@ function Login(props) {
       .catch(function (error) {
         console.log("Error");
       });
+
+    console.log(errorMessage);
   }
 
   return (
-    <div className="main-login">
-      <form onSubmit={submitHandler} className="login-form">
-        <h1>Login</h1>
+    <div className={styles["login-box"]}>
+      <h2>Login</h2>
+      <form onSubmit={submitHandler}>
         <h3>{errorMessage}</h3>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className={styles["login-user-box"]}>
           <input
             onChange={emailChangeHandler}
             type="text"
             name="email"
             id="email"
-            placeholder=" "
-            // autoComplete="off"
             required
           />
+          <label htmlFor="email">Email</label>
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className={styles["login-user-box"]}>
           <input
             onChange={passwordChangeHandler}
             type="password"
             name="password"
             id="password"
-            placeholder=" "
-            autoComplete="off"
             required
           />
+          <label htmlFor="password">Password</label>
         </div>
         <button type="submit">Login</button>
       </form>
-      <h2>Create an account</h2>
-      <a href="/signup">SignUp</a>
+      <button className={styles["login-register"]}>
+        <a href="/signup">Not a User? Register</a>
+      </button>
     </div>
   );
 }
