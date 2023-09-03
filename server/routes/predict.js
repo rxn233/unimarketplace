@@ -45,7 +45,7 @@ const estimatedPrice = async (req, res) => {
     console.log("Inside estimated price");
     try {
       const result = await executePython("./routes/predict.py", [
-        x,
+        // x,
         productDuration,
         productOriginalPrice,
       ]);
