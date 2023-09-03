@@ -1,16 +1,32 @@
-import "./NavBar.css";
+// import "./NavBar.css";
+import styles from "./NavBar.module.css";
 
 function NavBar(props) {
   const loggedIn = localStorage.getItem("loggedIn");
 
   return (
-    <div>
-      <nav className="navbar">
-        <div className="navbar-left">
-          <span className="company-name">UniMarketPlace</span>
+    // <div>
+    <div className={styles["nav"]}>
+      <div className={styles["nav-header"]}>
+        <div className={styles["nav-title"]}>UniMarketPlace</div>
+      </div>
+      <div className={styles["nav-links"]}>
+        <a href="/">Home</a>
+        <a href="/sell">Sell</a>
+        <a href="/about">About Us</a>
+        <a href="/message">Messages</a>
+        {loggedIn === "false" ? (
+          <a href="/login">Log In</a>
+        ) : (
+          <a href="/myprofile">My Profile</a>
+        )}
+      </div>
+      {/* <nav className={styles["navbar"]}>
+        <div className={styles["navbar-left"]}>
+          <span className={styles["company-name"]}>UniMarketPlace</span>
         </div>
-        <div className="navbar-right">
-          <ul className="navbar-links">
+        <div className={styles["navbar-right"]}>
+          <ul className={styles["navbar-links"]}>
             <li>
               <a href="/">Home</a>
             </li>
@@ -34,7 +50,7 @@ function NavBar(props) {
             )}
           </ul>
         </div>
-      </nav>
+      </nav> */}
     </div>
   );
 }

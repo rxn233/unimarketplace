@@ -13,11 +13,15 @@ function CreateListing() {
   const [estimatedPrice, setEstimatedPrice] = useState(0);
   const [productDuration, setProductDuration] = useState();
   const [productOriginalPrice, setProductOriginalPrice] = useState();
+  const [productDescription, setProductDescription] = useState("");
 
   const navigate = useNavigate();
 
   function productNameHandler(event) {
     setProductName(event.target.value);
+  }
+  function productDescHandler(event) {
+    setProductDescription(event.target.value);
   }
   function productCategoryHandler(event) {
     setProductCategory(event.target.value);
@@ -79,6 +83,8 @@ function CreateListing() {
       productOriginalPrice,
       productPrice,
       productURL,
+      estimatedPrice,
+      productDescription,
     };
 
     console.log(productData);
@@ -87,12 +93,11 @@ function CreateListing() {
       .post("http://localhost:3001/createlisting", productData)
       .then(function (response) {
         console.log(response.data);
+        navigate("/");
       })
       .catch(function (error) {
         console.log("Error", error);
       });
-
-    navigate("/");
   }
 
   return (
@@ -116,6 +121,17 @@ function CreateListing() {
           name="product_category"
           id="product_category"
           required
+        />
+        <br />
+        <br />
+        <label htmlFor="product_description">
+          Enter the Product Description
+        </label>
+        <input
+          onChange={productDescHandler}
+          type="text"
+          name="product_description"
+          id="product_description"
         />
         <br />
         <br />

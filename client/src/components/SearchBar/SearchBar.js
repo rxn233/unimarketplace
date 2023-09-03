@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "./SearchBar.css";
+// import "./SearchBar.css";
+import styles from "./SearchBar.module.css";
+import icon from "../../images/search-icon.png";
 
 function SearchBar(props) {
   const [searchText, setSearchText] = useState("");
@@ -14,20 +16,22 @@ function SearchBar(props) {
   }
 
   return (
-    <div className="search">
-      <div className="search-section">
+    <div className={styles["search"]}>
+      <div className={styles["search-section"]}>
         <form onSubmit={submitHandler}>
           <label htmlFor="search" />
           <input
-            className="search-input"
+            className={styles["search-input"]}
             onChange={searchTextHandler}
             type="text"
             id="search"
             name="searchquery"
             value={searchText}
-            placeholder="Search for a product"
+            placeholder="What are you looking for today?"
           />
-          <button>Search</button>
+          <button type="submit" className={styles["search-button"]}>
+            Submit
+          </button>
         </form>
       </div>
     </div>

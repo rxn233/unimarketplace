@@ -10,6 +10,16 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  padding: 0;
   /* display: flex; */
+  /* background-color: #3f3f3f; */
 }
+
+/* body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  display: flex;
+} */

@@ -1,4 +1,4 @@
-import "./AboutUs.css";
+// import "./AboutUs.css";
 
 function AboutUs() {
   // const navigate = useNavigate();

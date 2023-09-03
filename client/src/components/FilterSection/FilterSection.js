@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
-import "./FilterSection.css";
+// import "./FilterSection.css";
+import styles from "./FilterSection.module.css";
 
 function FilterSection(props) {
   const [newProduct, setNewProduct] = useState(false);
@@ -21,7 +22,7 @@ function FilterSection(props) {
   }, [newProduct, usedProduct, sort]);
 
   return (
-    <div className="filter-container">
+    <div className={styles["filter-container"]}>
       <h2>Filters</h2>
       <div>
         <input

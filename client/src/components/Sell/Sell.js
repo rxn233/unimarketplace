@@ -11,6 +11,7 @@ function Sell() {
   //   event.preventDefault();
   // }
   const navigate = useNavigate();
+
   function clickHandler(event) {
     navigate("/createlisting");
   }
@@ -33,20 +34,26 @@ function Sell() {
 
   return (
     <div>
-      <h2>My Products</h2>
-      <button onClick={clickHandler}>Add New Listing</button>
-      <div>
-        {products.map((i) => (
-          <ProductList
-            key={i.product_id + 1}
-            product_id={i.product_id}
-            product_name={i.product_name}
-            product_image_url={i.product_image_url}
-            product_price={i.product_price}
-            product_description={i.product_description}
-          />
-        ))}
-      </div>
+      {userId === "" ? (
+        <h3>You need to login first..!</h3>
+      ) : (
+        <div>
+          <h2>My Products</h2>
+          <button onClick={clickHandler}>Add New Listing</button>
+          <div>
+            {products.map((i) => (
+              <ProductList
+                key={i.product_id + 1}
+                product_id={i.product_id}
+                product_name={i.product_name}
+                product_image_url={i.product_image_url}
+                product_price={i.product_price}
+                product_description={i.product_description}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

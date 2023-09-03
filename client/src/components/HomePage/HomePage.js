@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import ProductSection from "../ProductSection/ProductSection";
-import "./HomePage.css";
+// import "./HomePage.css";
 
 function HomePage() {
   return (
-    <Fragment>
+    <div className="homepage">
       <ProductSection />
-    </Fragment>
+    </div>
   );
 }
 

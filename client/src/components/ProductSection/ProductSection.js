@@ -3,7 +3,8 @@ import { Fragment, useEffect, useState } from "react";
 import FilterSection from "../FilterSection/FilterSection";
 import SearchBar from "../SearchBar/SearchBar";
 import ProductList from "./ProductList";
-import "./ProductSection.css";
+// import "./ProductSection.css";
+import styles from "./ProductSection.module.css";
 
 const port = 3001;
 
@@ -51,11 +52,11 @@ function ProductSection() {
       <div>
         <SearchBar onSearch={searchHandler} />
       </div>
-      <div className="product-container">
-        <div className="filter-section">
+      <div className={styles["product-container"]}>
+        <div className={styles["filter-section"]}>
           <FilterSection onFilter={filterHandler} />
         </div>
-        <div className="product-section">
+        <div className={styles["product-section"]}>
           {products.map((i) => (
             <ProductList
               key={i.product_id + 1}

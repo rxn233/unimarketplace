@@ -18,9 +18,9 @@ const userProductsDisplay = async (req, res) => {
   }
 };
 
-const getDBUserData = async (user_id) => {
+const getProductId = async () => {
   try {
-  } catch (error) {}
+  } catch (err) {}
 };
 
 const createUserProduct = async (req, res) => {
@@ -29,8 +29,33 @@ const createUserProduct = async (req, res) => {
   try {
     const productData = req.body;
     console.log(productData);
-
-    res.json({ flag: "y" });
+    try {
+      await Product.insertMany({
+        product_id: "349",
+        product_name: productData.productName,
+        product_price: productData.productPrice,
+        product_category: productData.productCategory,
+        product_description: productData.productDescription,
+        product_brand: productData.productBrand,
+        product_condition: productData.productCondition,
+        product_image_url: productData.productURL,
+        product_estimated_price: productData.estimatedPrice,
+        product_original_price: productData.productOriginalPrice,
+        product_seller: {
+          id: productData.userId,
+        },
+      })
+        .then((data) => {
+          console.log("Success", data);
+          res.json({ flag: "y" });
+        })
+        .catch((err) => {
+          console.log("Error", err);
+          res.json({ flag: "n", error: err });
+        });
+    } catch (error) {
+      res.json({ flag: "n", error: error });
+    }
   } catch (error) {
     res.json({ flag: "n", error: "Error in creating new product" });
   }
