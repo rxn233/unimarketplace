@@ -82,9 +82,9 @@ function SignUp(props) {
           />
           <label htmlFor="password">Password</label>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Create Account</button>
         <button>
-          <a href="/login">Login instead</a>
+          <a href="/login">Have an account? Sign in</a>
         </button>
       </form>
     </div>

@@ -78,3 +78,7 @@
   text-decoration: none;
   color: #000000;
 }
+
+.signup-box form {
+  text-align: center;
+}

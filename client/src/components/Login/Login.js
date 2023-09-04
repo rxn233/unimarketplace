@@ -77,7 +77,7 @@ function Login(props) {
         <button type="submit">Login</button>
       </form>
       <button className={styles["login-register"]}>
-        <a href="/signup">Not a User? Register</a>
+        <a href="/signup">Don't have an account? Sign up</a>
       </button>
     </div>
   );
