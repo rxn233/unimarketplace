@@ -1,0 +1,79 @@
+.productItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  /* padding-bottom: 100px; */
+  /* border: 1px solid black; */
+  margin-right: 10%;
+  /* max-width: 1100px; */
+}
+
+.productImage {
+  width: 120px; /* Adjust the size as needed */
+  margin-right: 30px;
+}
+
+.productDetails {
+  flex: 1;
+}
+
+.productName {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.productDescription {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.productCategory {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.productCondition {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.estimatedPrice {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.product_original_price {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.messageButton {
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.contactButton {
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

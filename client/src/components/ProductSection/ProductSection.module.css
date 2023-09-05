@@ -17,6 +17,7 @@
 .filterSection {
   flex: 1;
   padding: 20px;
+  max-width: 15%;
   background-color: #f0f0f0;
 }
 

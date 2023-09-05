@@ -70,6 +70,7 @@ function ProductSection() {
               product_category={i.product_category}
               product_condition={i.product_condition}
               estimated_price={i.product_estimated_price}
+              product_original_price={i.product_original_price}
             />
           ))}
         </div>
