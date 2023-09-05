@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import list_style from "./CreateListing.module.css";
 
 function CreateListing() {
   const [userId, setUserId] = useState(localStorage.getItem("user_id"));
@@ -101,110 +102,97 @@ function CreateListing() {
   }
 
   return (
-    <div>
+    <div className={list_style["list-box"]}>
+      <h2>Create a New Listing</h2>
       <form onSubmit={submitHandler}>
-        <h1>Sell</h1>
-        <label htmlFor="product_name">Enter the Product Name</label>
-        <input
-          onChange={productNameHandler}
-          type="text"
-          name="product_name"
-          id="product_name"
-          required
-        />
-        <br />
-        <br />
-        <label htmlFor="product_category">Enter the Product Category</label>
-        <input
-          onChange={productCategoryHandler}
-          type="text"
-          name="product_category"
-          id="product_category"
-          required
-        />
-        <br />
-        <br />
-        <label htmlFor="product_description">
-          Enter the Product Description
-        </label>
-        <input
-          onChange={productDescHandler}
-          type="text"
-          name="product_description"
-          id="product_description"
-        />
-        <br />
-        <br />
-        <label htmlFor="product_brand">Enter the Product Brand</label>
-        <input
-          onChange={productBrandHandler}
-          type="text"
-          name="product_brand"
-          id="product_brand"
-          required
-        />
-        <br />
-        <br />
-        <label htmlFor="product_condition">Select the product condition</label>
-        <select
-          name="product_condition"
-          onChange={productConditionHandler}
-          value={productCondition}
-        >
-          <option value="new">New</option>
-          <option value="used">Used</option>
-        </select>
-        <br />
-        <br />
-        <label htmlFor="product_duration">
-          How Long have you used the product for?
-        </label>
-        <input
-          onChange={productDurationHandler}
-          type="number"
-          id="product_duration"
-        />
-        <br />
-        <br />
-        <label htmlFor="original_product_price">
-          Enter the Original Product Price
-        </label>
-        <input
-          value={productOriginalPrice}
-          onChange={productOriginalPriceHandler}
-          type="number"
-          id="original_product_price"
-        />
-        <br /> <br />
-        <label htmlFor="product_price">Enter the product price</label>
-        <input
-          onChange={productPriceHandler}
-          type="number"
-          id="product_price"
-        />
-        <label htmlFor="product_image">Add the Image</label>
-        <input
-          onChange={productImageHandler}
-          type="file"
-          name="product_image"
-          id="product_image"
-        />
-        <br />
-        <br />
-        <label htmlFor="product_image_url">Add the Image URL</label>
-        <input
-          onChange={productImageURLHandler}
-          type="text"
-          name="product_image_url"
-          id="product_image_url"
-        />
-        <br />
-        <br />
-        <label htmlFor="estimated_price">Estimated Product Price </label>
-        {parseFloat(estimatedPrice).toFixed(2)}
-        <br />
-        <br />
-        <button type="submit">Submit</button>
+        <div className={list_style["list-details"]}>
+          <label htmlFor="product_name">Enter the Product Name</label>
+          <input
+            onChange={productNameHandler}
+            type="text"
+            name="product_name"
+            id="product_name"
+            required
+          />
+          <label htmlFor="product_category">Enter the Product Category</label>
+          <input
+            onChange={productCategoryHandler}
+            type="text"
+            name="product_category"
+            id="product_category"
+            required
+          />
+          <label htmlFor="product_description">
+            Enter the Product Description
+          </label>
+          <input
+            onChange={productDescHandler}
+            type="text"
+            name="product_description"
+            id="product_description"
+          />
+          <label htmlFor="product_brand">Enter the Product Brand</label>
+          <input
+            onChange={productBrandHandler}
+            type="text"
+            name="product_brand"
+            id="product_brand"
+            required
+          />
+          <label htmlFor="product_condition">
+            Select the product condition
+          </label>
+          <select
+            name="product_condition"
+            onChange={productConditionHandler}
+            value={productCondition}
+          >
+            <option value="new">New</option>
+            <option value="used">Used</option>
+          </select>
+          <label htmlFor="product_duration">
+            How Long have you used the product for?
+          </label>
+          <input
+            onChange={productDurationHandler}
+            type="number"
+            id="product_duration"
+          />
+          <label htmlFor="original_product_price">
+            Enter the Original Product Price
+          </label>
+          <input
+            value={productOriginalPrice}
+            onChange={productOriginalPriceHandler}
+            type="number"
+            id="original_product_price"
+          />
+          <label htmlFor="product_price">Enter the product price</label>
+          <input
+            onChange={productPriceHandler}
+            type="number"
+            id="product_price"
+          />
+          <label htmlFor="product_image">Add the Image</label>
+          <input
+            onChange={productImageHandler}
+            type="file"
+            name="product_image"
+            id="product_image"
+          />
+          <label htmlFor="product_image_url">Add the Image URL</label>
+          <input
+            onChange={productImageURLHandler}
+            type="text"
+            name="product_image_url"
+            id="product_image_url"
+          />
+          <label htmlFor="estimated_price">
+            <b>Estimated Product Price:</b> £
+          </label>
+          {parseFloat(estimatedPrice).toFixed(2)}
+          <button type="submit">Submit</button>
+        </div>
       </form>
       <button onClick={backHandler}>Go Back</button>
     </div>
