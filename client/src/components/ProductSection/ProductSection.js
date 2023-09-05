@@ -47,16 +47,18 @@ function ProductSection() {
     setUsedProduct(filterData.used);
     setSort(filterData.sort);
   }
+  console.log(products);
   return (
-    <Fragment>
-      <div>
+    <div>
+      <div className={styles.searchBar}>
         <SearchBar onSearch={searchHandler} />
       </div>
-      <div className={styles["product-container"]}>
-        <div className={styles["filter-section"]}>
+      <div className={styles.mainContainer}>
+        <div className={styles.filterSection}>
           <FilterSection onFilter={filterHandler} />
         </div>
-        <div className={styles["product-section"]}>
+        {/* <div className={styles.separator}></div> */}
+        <div className={styles.productList}>
           {products.map((i) => (
             <ProductList
               key={i.product_id + 1}
@@ -67,11 +69,12 @@ function ProductSection() {
               product_description={i.product_description}
               product_category={i.product_category}
               product_condition={i.product_condition}
+              estimated_price={i.product_estimated_price}
             />
           ))}
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
 export default ProductSection;

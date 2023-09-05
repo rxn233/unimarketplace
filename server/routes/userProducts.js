@@ -30,8 +30,13 @@ const createUserProduct = async (req, res) => {
     const productData = req.body;
     console.log(productData);
     try {
+      let highestProductID = await Product.findOne().sort({ product_id: -1 });
+      let nextProductID = highestProductID
+        ? highestProductID.product_id + 1
+        : 1;
+
       await Product.insertMany({
-        product_id: "349",
+        product_id: nextProductID,
         product_name: productData.productName,
         product_price: productData.productPrice,
         product_category: productData.productCategory,

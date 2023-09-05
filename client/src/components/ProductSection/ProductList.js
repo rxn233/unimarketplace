@@ -11,7 +11,7 @@ function ProductList(props) {
   return (
     <div className="product-box">
       <div className="product-image">
-        <img src={props.product_image_url} />
+        <img src={props.product_image_url} alt="product_image" />
       </div>
       <div className="product-details">
         <h3 className="product-name">{props.product_name}</h3>
@@ -31,7 +31,9 @@ function ProductList(props) {
         </div>
         <div className="price-container">
           <span className="price-label">Estimated Price: </span>
-          <span className="product-estimated-price">Estimated AI Price</span>
+          <span className="product-estimated-price">
+            {parseFloat(props.estimated_price).toFixed(2)}
+          </span>
         </div>
         <button onClick={messageUser}>Message User</button>
       </div>
