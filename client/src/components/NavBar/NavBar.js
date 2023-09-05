@@ -14,9 +14,11 @@ function NavBar(props) {
       </div>
       <div className={styles["nav-links"]}>
         <a href="/">Home</a>
-        <a href="/sell">Sell</a>
+        {loggedIn === "false" ? "" : <a href="/sell">Sell</a>}
+
         <a href="/about">About Us</a>
-        <a href="/message">Messages</a>
+        {loggedIn === "false" ? "" : <a href="/message">Messages</a>}
+
         {loggedIn === "false" ? (
           <a href="/login">Log In</a>
         ) : (

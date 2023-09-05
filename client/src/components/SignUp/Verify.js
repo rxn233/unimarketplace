@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import verify_style from "./Verify.module.css";
 
 function Verify(props) {
   const navigate = useNavigate();
@@ -40,15 +41,24 @@ function Verify(props) {
   }
 
   return (
-    <div>
-      <h2>Verify</h2>
-      <h3>{errorMessage}</h3>
-      <h3>Entered Email: {enteredEmail}</h3>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="verify_code">Enter the verification code: </label>
-        <input onChange={codeChangeHandler} type="number" id="verify_code" />
-        <button type="submit">Verify the code</button>
-      </form>
+    <div className={verify_style["verify-box"]}>
+      <h2>Verify the OTP</h2>
+      <p className={verify_style["verify-message"]}>
+        {errorMessage
+          ? errorMessage
+          : "Please enter the OTP sent to the below Email address"}
+      </p>
+      <div className={verify_style["verify-details"]}>
+        <p>
+          <b>Email: </b>
+          {enteredEmail}
+        </p>
+        <form onSubmit={submitHandler}>
+          <label htmlFor="verify_code">Enter the verification code: </label>
+          <input onChange={codeChangeHandler} type="number" id="verify_code" />
+          <button type="submit">Verify the code</button>
+        </form>
+      </div>
     </div>
   );
 }

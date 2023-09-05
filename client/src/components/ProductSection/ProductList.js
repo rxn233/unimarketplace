@@ -7,10 +7,13 @@ function ProductList(props) {
   const navigate = useNavigate();
 
   const messageUser = () => {
+    console.log(props.product_seller);
     navigate("/message");
   };
 
-  const emailUser = () => {};
+  const emailUser = () => {
+    navigate("/email");
+  };
 
   return (
     <div className={styles.productItem}>
@@ -31,15 +34,22 @@ function ProductList(props) {
         <div className={styles.productCondition}>
           Condition: {props.product_condition}
         </div>
-        <div className={styles.productPrice}>Price: ${props.product_price}</div>
+        <div className={styles.productPrice}>
+          Price: ${parseFloat(props.product_price).toFixed(2)}
+        </div>
 
         <div className={styles.estimatedPrice}>
-          Estimated Price: £{parseFloat(props.estimated_price).toFixed(2)}
+          Estimated Price: £
+          {props.estimated_price !== undefined
+            ? parseFloat(props.estimated_price).toFixed(2)
+            : 0}
         </div>
 
         <div className={styles.product_original_price}>
           Original Product Price: £
-          {parseFloat(props.product_original_price).toFixed(2)}
+          {props.product_original_price !== undefined
+            ? parseFloat(props.product_original_price).toFixed(2)
+            : 0}
         </div>
 
         <div className={styles.buttonsContainer}>

@@ -59,6 +59,10 @@ function Sell() {
                   product_image_url={i.product_image_url}
                   product_price={i.product_price}
                   product_description={i.product_description}
+                  product_category={i.product_category}
+                  product_condition={i.product_condition}
+                  estimated_price={i.product_estimated_price}
+                  product_original_price={i.product_original_price}
                 />
               ))
             )}

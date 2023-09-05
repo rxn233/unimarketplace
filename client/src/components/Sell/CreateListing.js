@@ -8,7 +8,7 @@ function CreateListing() {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productBrand, setProductBrand] = useState("");
-  const [productCondition, setProductCondition] = useState("new");
+  const [productCondition, setProductCondition] = useState("New");
   const [productPrice, setProductPrice] = useState();
   const [productURL, setProductURL] = useState("");
   const [estimatedPrice, setEstimatedPrice] = useState(0);
@@ -101,6 +101,7 @@ function CreateListing() {
       });
   }
 
+  console.log(productCondition);
   return (
     <div className={list_style["list-box"]}>
       <h2>Create a New Listing</h2>
@@ -147,17 +148,24 @@ function CreateListing() {
             onChange={productConditionHandler}
             value={productCondition}
           >
-            <option value="new">New</option>
-            <option value="used">Used</option>
+            <option value="New">New</option>
+            <option value="Used">Used</option>
           </select>
-          <label htmlFor="product_duration">
-            How Long have you used the product for?
-          </label>
-          <input
-            onChange={productDurationHandler}
-            type="number"
-            id="product_duration"
-          />
+          {productCondition !== "New" ? (
+            <div>
+              <label htmlFor="product_duration">
+                How Long have you used the product for?
+              </label>
+              <input
+                onChange={productDurationHandler}
+                type="number"
+                id="product_duration"
+              />
+            </div>
+          ) : (
+            ""
+          )}
+
           <label htmlFor="original_product_price">
             Enter the Original Product Price
           </label>
@@ -190,7 +198,9 @@ function CreateListing() {
           <label htmlFor="estimated_price">
             <b>Estimated Product Price:</b> £
           </label>
-          {parseFloat(estimatedPrice).toFixed(2)}
+          {estimatedPrice !== undefined
+            ? parseFloat(estimatedPrice).toFixed(2)
+            : 0}
           <button type="submit">Submit</button>
         </div>
       </form>

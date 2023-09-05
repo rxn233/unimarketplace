@@ -74,45 +74,55 @@ const SignupUser = async (enteredName, enteredEmail, enteredPassword) => {
 };
 
 const verifyCode = async (req, res) => {
-  console.log("Verify Code section");
-  const { enteredEmail, enteredName, enteredPassword, enteredCode } = req.body;
-  const userID = enteredEmail.split("@");
-  console.log("Verify backend", enteredEmail, enteredCode);
-  const verifyUser = await Verification.findOne({ user_email: enteredEmail });
-  console.log("verify user code", verifyUser.code);
-  if (verifyUser.code === parseInt(enteredCode)) {
-    // SignupUser(enteredName, enteredEmail, enteredPassword);
-    try {
-      const userID = enteredEmail.split("@");
-      const hashedPassword = await bcrypt.hash(enteredPassword, 10);
-      console.log("Hashed");
-      console.log(hashedPassword);
+  try {
+    console.log("Verify Code section");
+    const { enteredEmail, enteredName, enteredPassword, enteredCode } =
+      req.body;
+    const userID = enteredEmail.split("@");
+    console.log("Verify backend", enteredEmail, enteredCode);
+    const verifyUser = await Verification.findOne({ user_email: enteredEmail });
+    console.log("verify user code", verifyUser.code);
+    if (verifyUser.code === parseInt(enteredCode)) {
+      // SignupUser(enteredName, enteredEmail, enteredPassword);
       try {
-        await User.insertMany({
-          user_id: userID[0],
-          user_name: enteredName,
-          user_email: enteredEmail,
-          user_password: hashedPassword,
-        })
-          .then((data) => {
-            console.log("Success", data);
+        const userID = enteredEmail.split("@");
+        const hashedPassword = await bcrypt.hash(enteredPassword, 10);
+        console.log("Hashed");
+        console.log(hashedPassword);
+        try {
+          await User.insertMany({
+            user_id: userID[0],
+            user_name: enteredName,
+            user_email: enteredEmail,
+            user_password: hashedPassword,
           })
-          .catch((err) => {
-            console.log("Error", err);
+            .then((data) => {
+              console.log("Success", data);
+            })
+            .catch((err) => {
+              console.log("Error", err);
+            });
+          try {
+            await Verification.findOneAndDelete({ user_email: enteredEmail });
+          } catch (err) {
+            res.json({ flag: "n", error: err });
+          }
+          res.json({
+            flag: "y",
+            user_id: userID[0],
+            email: enteredEmail,
           });
+        } catch (err) {
+          res.json({ flag: "n", error: "Error signing up" });
+        }
       } catch (err) {
-        res.json({ flag: "n", error: "Error signing up" });
+        console.log("Error", err);
       }
-      res.json({
-        flag: "y",
-        user_id: userID[0],
-        email: enteredEmail,
-      });
-    } catch (err) {
-      console.log("Error", err);
+    } else {
+      res.json({ flag: "n", error: "Code doesnot match" });
     }
-  } else {
-    res.json({ flag: "n", error: "Code doesnot match" });
+  } catch (error) {
+    res.json({ flag: "n", error: error });
   }
 };
 

@@ -7,7 +7,6 @@ const socket = io.connect("http://localhost:3001");
 function Messaging() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const userId = localStorage.getItem("user_id");
   const navigate = useNavigate();
 
   const username = localStorage.getItem("user_id");
@@ -52,7 +51,7 @@ function Messaging() {
   return (
     <div>
       {username === "" ? (
-        <h3>You need to login first to send a message</h3>
+        <h3>Please login first to send a message..!</h3>
       ) : (
         <div className={styles["chat-window"]}>
           <h2>Messaging</h2>

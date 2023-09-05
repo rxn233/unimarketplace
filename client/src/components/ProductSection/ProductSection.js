@@ -57,7 +57,6 @@ function ProductSection() {
         <div className={styles.filterSection}>
           <FilterSection onFilter={filterHandler} />
         </div>
-        {/* <div className={styles.separator}></div> */}
         <div className={styles.productList}>
           {products.map((i) => (
             <ProductList
@@ -71,6 +70,7 @@ function ProductSection() {
               product_condition={i.product_condition}
               estimated_price={i.product_estimated_price}
               product_original_price={i.product_original_price}
+              product_seller={i.product_seller}
             />
           ))}
         </div>
