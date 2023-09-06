@@ -4452,10 +4452,10 @@ collection named products- total count 347*/
 
 /*Script below used to insert above seedUsers data in uniMarketPlace 
 collection named users- total count - 3 */
-User.insertMany(seedUsers)
-  .then((data) => {
-    console.log("Success", data);
-  })
-  .catch((err) => {
-    console.log("Error", err);
-  });
+// User.insertMany(seedUsers)
+//   .then((data) => {
+//     console.log("Success", data);
+//   })
+//   .catch((err) => {
+//     console.log("Error", err);
+//   });

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import email_style from "./Email.module.css";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 function Email(props) {
   const userId = localStorage.getItem("user_id");
@@ -21,6 +21,7 @@ function Email(props) {
       .then(function (response) {
         console.log(response);
         if (response.data.flag === "y") {
+          console.log(response.data);
           navigate("/");
         } else {
           setErrorMessage(response.data.error);
