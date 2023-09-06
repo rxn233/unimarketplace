@@ -1,7 +1,13 @@
-.main-aboutus {
-  margin: 30px;
+.about-box {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
 }
 
-.main-aboutus h3 {
+.about-box h2,
+.about-box h3 {
   text-align: center;
 }
