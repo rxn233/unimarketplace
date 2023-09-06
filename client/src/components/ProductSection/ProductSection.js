@@ -41,9 +41,13 @@ function ProductSection(props) {
     setSearchData(searchText);
   }
 
-  function recipientUser(user) {
-    console.log("Product Section", user);
-    props.onMessage(user);
+  function recipientUserMessage(userMessage) {
+    // console.log("Product Section", user);
+    props.onMessage(userMessage);
+  }
+
+  function recipientUserEmail(userEmail) {
+    props.onEmail(userEmail);
   }
 
   function filterHandler(filterData) {
@@ -76,7 +80,8 @@ function ProductSection(props) {
               estimated_price={i.product_estimated_price}
               product_original_price={i.product_original_price}
               product_seller={i.product_seller}
-              onMessage={recipientUser}
+              onMessage={recipientUserMessage}
+              onEmail={recipientUserEmail}
             />
           ))}
         </div>

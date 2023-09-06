@@ -3,14 +3,21 @@ import ProductSection from "../ProductSection/ProductSection";
 // import "./HomePage.css";
 
 function HomePage(props) {
-  function recipientUser(user) {
-    props.onMessage(user);
+  function recipientUserMessage(userMessage) {
+    props.onMessage(userMessage);
     // console.log("Homepage", user);
+  }
+
+  function recipientUserEmail(userEmail) {
+    props.onEmail(userEmail);
   }
 
   return (
     <div className="homepage">
-      <ProductSection onMessage={recipientUser} />
+      <ProductSection
+        onMessage={recipientUserMessage}
+        onEmail={recipientUserEmail}
+      />
     </div>
   );
 }

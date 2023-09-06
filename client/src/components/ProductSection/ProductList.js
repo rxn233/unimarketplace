@@ -13,6 +13,7 @@ function ProductList(props) {
   };
 
   const emailUser = () => {
+    props.onEmail(props.product_seller);
     navigate("/email");
   };
 

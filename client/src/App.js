@@ -11,12 +11,14 @@ import Verify from "./components/SignUp/Verify";
 import Messaging from "./components/Messaging/Messaging";
 import CreateListing from "./components/Sell/CreateListing";
 import EditProfile from "./components/MyProfile/EditProfile";
+import Email from "./components/Messaging/Email";
 
 function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loggedIn, setLoggedIn] = useState();
   const [signupData, setSignupData] = useState({});
-  const [recipientUserData, setRecipientUserData] = useState();
+  const [recipientMessageData, setRecipientMessageData] = useState();
+  const [recipientEmailData, setRecipientEmailData] = useState();
 
   if (localStorage.getItem("loggedIn") === null) {
     localStorage.setItem("loggedIn", false);
@@ -41,9 +43,13 @@ function App() {
     console.log(logoutData);
   }
 
-  function recipientUser(user) {
+  function recipientUserMessage(userMessage) {
     // console.log("App", user);
-    setRecipientUserData(user);
+    setRecipientMessageData(userMessage);
+  }
+
+  function recipientUserEmail(userEmail) {
+    setRecipientEmailData(userEmail);
   }
 
   return (
@@ -54,7 +60,12 @@ function App() {
           <Route
             exact
             path="/"
-            element={<HomePage onMessage={recipientUser} />}
+            element={
+              <HomePage
+                onMessage={recipientUserMessage}
+                onEmail={recipientUserEmail}
+              />
+            }
           />
           <Route
             exact
@@ -84,7 +95,12 @@ function App() {
           <Route
             exact
             path="/message"
-            element={<Messaging recipient={recipientUserData} />}
+            element={<Messaging recipient={recipientMessageData} />}
+          />
+          <Route
+            exact
+            path="/email"
+            element={<Email recipient={recipientEmailData} />}
           />
           <Route exact path="/editprofile" element={<EditProfile />} />
         </Routes>

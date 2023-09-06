@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer");
 const { Username, Password } = require("../env");
+const User = require("../models/users");
 
 console.log("Below html section");
 
@@ -48,19 +49,32 @@ const sendMail = async (email, code) => {
   console.log("Message sent" + info.messageId);
 };
 
-//   const info = await transporter.sendMail({
-//     from: `UniMarketPlace ${Username}`,
-//     to: "rohit007nair@gmail.com",
-//     subject: "Verification Code",
-//     html: mailContent,
-//   });
-//   console.log("Message sent" + info.messageId);
-// };
-
-// mailer().catch((err) => {
-//   console.log("Error", err);
-// });
+const contactRecipient = async (req, res) => {
+  const sender_id = req.body.user_email;
+  const receiver_id = req.body.recipient.id;
+  const messageContent = req.body.message;
+  console.log(sender_id, receiver_id);
+  try {
+    const senderInfo = await User.findOne({ user_id: sender_id });
+    const senderEmail = senderInfo.user_email;
+    const receiverInfo = await User.findOne({ user_id: receiver_id });
+    const receiverEmail = receiverInfo.user_email;
+    const contactContent = `<p> ${messageContent} </p>
+    <p>Please contact me back on Email: ${senderEmail} </p>`;
+    const contactOptions = {
+      from: `UniMarketPlace ${Username}`,
+      to: receiverEmail,
+      subject: "Message regarding your product",
+      html: contactContent,
+    };
+    const contactInfo = await transporter.sendMail(contactOptions);
+    res.json({ flag: "y" });
+  } catch (err) {
+    res.json({ flag: "n", error: err });
+  }
+};
 
 module.exports = {
   sendMail,
+  contactRecipient,
 };

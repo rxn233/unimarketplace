@@ -13,6 +13,7 @@ const myProfileRoute = require("./routes/myprofile");
 const signupRoute = require("./routes/signup");
 const userProducts = require("./routes/userProducts");
 const predict = require("./routes/predict");
+const mailer = require("./routes/mailer");
 const { socketSetup } = require("./routes/socket");
 const http = require("http");
 const server = http.createServer(app);
@@ -51,6 +52,8 @@ app.post("/verify", signupRoute.verifyCode);
 app.post("/createlisting", userProducts.createUserProduct);
 
 app.get("/predict", predict.estimatedPrice);
+
+app.post("/email", mailer.contactRecipient);
 
 socketSetup(server);
 
