@@ -35,7 +35,7 @@ const estimatedPrice = async (req, res) => {
 
   if (productOriginalPrice > 0) {
     let x;
-    if (productCondition === "new") {
+    if (productCondition === "New") {
       x = 0.0;
     } else {
       x = 1.0;
@@ -44,14 +44,22 @@ const estimatedPrice = async (req, res) => {
     console.log(x, productDuration, productOriginalPrice);
     console.log("Inside estimated price");
     try {
-      const result = await executePython("./routes/predict.py", [
-        // x,
-        productDuration,
-        productOriginalPrice,
-      ]);
-      console.log(result);
-      console.log("Result got");
-      res.json({ flag: "y", estimated_price: result.trim(), error: "no" });
+      if (x === 1.0) {
+        const result = await executePython("./routes/predict.py", [
+          // x,
+          productDuration,
+          productOriginalPrice,
+        ]);
+        console.log(result);
+        console.log("Result got");
+        res.json({ flag: "y", estimated_price: result.trim(), error: "no" });
+      } else {
+        res.json({
+          flag: "y",
+          estimated_price: productOriginalPrice,
+          error: "no",
+        });
+      }
     } catch (err) {
       console.log("Error", err);
       res.json({ flag: "n", error: err });

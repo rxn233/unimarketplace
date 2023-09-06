@@ -8,6 +8,9 @@ function SignUp(props) {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [emailValid, setEmailValid] = useState(true);
+  const [passwordValid, setPasswordValid] = useState(true);
+  const [nameValid, setNameValid] = useState(true);
   const navigate = useNavigate();
 
   function nameHandler(event) {

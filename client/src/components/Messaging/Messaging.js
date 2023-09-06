@@ -4,10 +4,12 @@ import styles from "./Messaging.module.css";
 import { useNavigate } from "react-router";
 const socket = io.connect("http://localhost:3001");
 
-function Messaging() {
+function Messaging(props) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const navigate = useNavigate();
+
+  // console.log("Messaging", props.recipient.id);
 
   const username = localStorage.getItem("user_id");
   if (username === "") {
@@ -17,6 +19,8 @@ function Messaging() {
     navigate("/login");
   }
   const room = "123";
+  // const room = `${username}${props.recipient.id}`;
+  // socket.emit("join_room", room);
   const joinRoom = () => {
     socket.emit("join_room", room);
   };

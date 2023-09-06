@@ -12,7 +12,7 @@ function CreateListing() {
   const [productPrice, setProductPrice] = useState();
   const [productURL, setProductURL] = useState("");
   const [estimatedPrice, setEstimatedPrice] = useState(0);
-  const [productDuration, setProductDuration] = useState();
+  const [productDuration, setProductDuration] = useState(0);
   const [productOriginalPrice, setProductOriginalPrice] = useState();
   const [productDescription, setProductDescription] = useState("");
 

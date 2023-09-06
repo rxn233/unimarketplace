@@ -8,6 +8,7 @@ function ProductList(props) {
 
   const messageUser = () => {
     console.log(props.product_seller);
+    props.onMessage(props.product_seller);
     navigate("/message");
   };
 

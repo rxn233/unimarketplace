@@ -16,6 +16,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [loggedIn, setLoggedIn] = useState();
   const [signupData, setSignupData] = useState({});
+  const [recipientUserData, setRecipientUserData] = useState();
 
   if (localStorage.getItem("loggedIn") === null) {
     localStorage.setItem("loggedIn", false);
@@ -40,12 +41,21 @@ function App() {
     console.log(logoutData);
   }
 
+  function recipientUser(user) {
+    // console.log("App", user);
+    setRecipientUserData(user);
+  }
+
   return (
     <div>
       <NavBar />
       <Router>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
+          <Route
+            exact
+            path="/"
+            element={<HomePage onMessage={recipientUser} />}
+          />
           <Route
             exact
             path="/login"
@@ -71,7 +81,11 @@ function App() {
               <Verify signupData={signupData} onLogin={loginDataHandler} />
             }
           />
-          <Route exact path="/message" element={<Messaging />} />
+          <Route
+            exact
+            path="/message"
+            element={<Messaging recipient={recipientUserData} />}
+          />
           <Route exact path="/editprofile" element={<EditProfile />} />
         </Routes>
       </Router>

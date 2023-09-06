@@ -8,7 +8,7 @@ import styles from "./ProductSection.module.css";
 
 const port = 3001;
 
-function ProductSection() {
+function ProductSection(props) {
   const [products, setProducts] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [newProduct, setNewProduct] = useState(false);
@@ -41,6 +41,11 @@ function ProductSection() {
     setSearchData(searchText);
   }
 
+  function recipientUser(user) {
+    console.log("Product Section", user);
+    props.onMessage(user);
+  }
+
   function filterHandler(filterData) {
     // console.log("Product Section", filterData);
     setNewProduct(filterData.new);
@@ -71,6 +76,7 @@ function ProductSection() {
               estimated_price={i.product_estimated_price}
               product_original_price={i.product_original_price}
               product_seller={i.product_seller}
+              onMessage={recipientUser}
             />
           ))}
         </div>
