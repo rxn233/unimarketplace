@@ -41,6 +41,7 @@ function App() {
     localStorage.setItem("user_id", "");
     setLoggedIn(false);
     console.log(logoutData);
+    console.log("Read");
   }
 
   function recipientUserMessage(userMessage) {
